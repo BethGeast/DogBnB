@@ -2,10 +2,8 @@
 
 <h1><%= @item.name %></h1>
 
-<% if @item.photos.present? %>
-  <% @item.photos.each do |photo| %>
-    <%= cl_image_tag photo.key, height: 200, width: 200, crop: :fill %>
-  <% end %>
+<% @item.photos.each do |photo| %>
+  <%= cl_image_tag photo.key, height: 200, width: 200, crop: :fill %>
 <% end %>
 
 <h3><%= @item.price %> || <%= @item.location %> || <%= @item.date_available %></h3>
@@ -13,3 +11,4 @@
 
 <%= link_to "Back to all items", items_path %>
 <%= link_to "Back to home", root_path %>
+<%= link_to "edit this listing", edit_item_path %>
