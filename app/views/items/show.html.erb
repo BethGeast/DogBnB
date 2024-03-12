@@ -1,0 +1,15 @@
+<h1>this should show one single lonely item</h1>
+
+<h1><%= @item.name %></h1>
+
+<% if @item.photos.present? %>
+  <% @item.photos.each do |photo| %>
+    <%= cl_image_tag photo.key, height: 200, width: 200, crop: :fill %>
+  <% end %>
+<% end %>
+
+<h3><%= @item.price %> || <%= @item.location %> || <%= @item.date_available %></h3>
+<p><%= @item.description %></p>
+
+<%= link_to "Back to all items", items_path %>
+<%= link_to "Back to home", root_path %>
