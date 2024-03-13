@@ -1,8 +1,14 @@
 <div class="navbar navbar-expand-sm navbar-light navbar-airdiy">
   <div class="container-fluid">
-    <%= link_to "/", class: "navbar-brand" do %>
-      <%= image_tag "Logo.png" %>
-    <% end %>
+    <div class="d-flex align-items-center">
+      <!-- Logo -->
+      <%= link_to "/", class: "navbar-brand mr-2" do %>
+        <%= image_tag "Logo.png" %>
+      <% end %>
+
+      <!-- Website Name -->
+      <span class="website-name ml-2">Dogbnb</span>
+    </div>
 
     <form class="d-flex mx-auto">
       <div class="input-group">
