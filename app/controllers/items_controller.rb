@@ -38,7 +38,7 @@ class ItemsController < ApplicationController
   private
 
   def item_strong_params
-    params.require(:item).permit(:name, :description, :price, :location, :date_available, photos: [])
+    params.require(:item).permit(:name, :description, :price, :location, :date_available_from, :date_available_until, photos: [])
   end
 
   def set_item
