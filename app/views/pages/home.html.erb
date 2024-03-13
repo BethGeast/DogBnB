@@ -1,3 +1,57 @@
-<h1>Pages#home</h1>
-<p>Find me in app/views/pages/home.html.erb</p>
-  
+<div class="container mt-5">
+  <div class="row mb-3">
+    <div class="col-md-12">
+      <p>todo put filters here</p>
+    </div>
+  </div>
+
+  <!-- Cards Section -->
+  <% if @items.present? %>
+    <% @items.in_groups_of(3, false) do |row_items| %>
+      <div class="row">
+        <% row_items.compact.each do |item| %>
+          <div class="col-md-4">
+            <div class="card mb-4">
+              <div id="carousel<%= item.id %>" class="carousel slide" data-ride="carousel">
+                <div class="carousel-inner">
+                  <% item.photos.each_with_index do |photo, index| %>
+                    <div class="carousel-item <%= 'active' if index == 0 %>">
+                      <%= cl_image_tag photo.key, class: "d-block w-100 rounded-top" %>
+                    </div>
+                  <% end %>
+                </div>
+                <% if item.photos.count > 1 %>
+                  <a class="carousel-control-prev" href="#carousel<%= item.id %>" role="button" data-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Previous</span>
+                  </a>
+                  <a class="carousel-control-next" href="#carousel<%= item.id %>" role="button" data-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Next</span>
+                  </a>
+                <% end %>
+              </div>
+              <button class="favorite-btn far fa-heart"></button>
+              <div class="card-body">
+                <h5 class="card-title"><%= link_to item.name, item_path(item) %></h5>
+                <div class="card-text d-flex justify-content-between align-items-center">
+                  <p class="m-0">$<%= item.price %> per night</p>
+                  <div class="location-wrapper">
+                    <span class="location-text"><%= item.location %></span>
+                    <i class="location-icon fas fa-map-marker-alt"></i>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    <% end %>
+  <% else %>
+    <div class="row">
+      <div class="col-md-12">
+        <p>No items to display.</p>
+      </div>
+    </div>
+  <% end %>
+</div>
