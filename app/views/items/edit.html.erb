@@ -1,0 +1,13 @@
+<h1>edit your listing here</h1>
+
+<%= simple_form_for (@item) do |f| %>
+  <%= f.input :name %>
+  <%= f.input :description %>
+  <%= f.input :price %>
+  <%= f.input :location %>
+  <%= f.input :date_available %>
+  <%= f.input :photos, as: :file, input_html: { multiple: true } %>
+  <%= f.submit %>
+<% end %>
+
+<%= link_to "Back to item", item_path(@item) %>
