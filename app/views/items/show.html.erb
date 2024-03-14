@@ -1,24 +1,34 @@
-<div class="container">
   <div class="row justify-content-center">
     <div class="col-md-8">
-      <div class="card">
-        <div class="card-body">
-          <h2 class="card-title"><%= @item.name %></h2>
-          <% @item.photos.each do |photo| %>
-            <div class="d-flex justify-content-center mb-3">
-              <%= cl_image_tag photo.key, width: 300, height: 200, crop: :fill, class: "rounded" %>
+          <div id="carousel<%= @item.id %>" class="carousel slide mb-3">
+            <div class="carousel-inner">
+              <% @item.photos.each_with_index do |photo, index| %>
+                <div class="carousel-item <%= 'active' if index == 0 %>">
+                  <%= cl_image_tag photo.key, class: "d-block w-100 rounded" %>
+                </div>
+              <% end %>
             </div>
-          <% end %>
+            <% if @item.photos.count > 1 %>
+              <a class="carousel-control-prev" href="#carousel<%= @item.id %>" role="button" data-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="sr-only">Previous</span>
+              </a>
+              <a class="carousel-control-next" href="#carousel<%= @item.id %>" role="button" data-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="sr-only">Next</span>
+              </a>
+            <% end %>
+          </div>
+          <h2 class="show-title text-center mb-4"><%= @item.name %></h2>
           <p class="card-text">Price per day: <%= @item.price %>$ || Location: <%= @item.location %> || Available from: <%= @item.date_available_from %>|| Available until: <%= @item.date_available_until %></p>
           <p class="card-text"><%= @item.description %></p>
-          <%= link_to "Back to all items", items_path, class: "btn btn-primary mr-2" %>
-          <%= link_to "Back to home", root_path, class: "btn btn-primary mr-2" %>
-          <%= link_to "Edit this listing", edit_item_path(@item), class: "btn btn-secondary mr-2" %>
-          <%= link_to "Delete this listing", item_path(@item),
-            data: { turbo_method: :delete, turbo_confirm: "Are you sure you want to delete this listing?" },
-            class: "btn btn-danger" %>
-        </div>
-      </div>
+          <div class="d-flex justify-content-between align-items-center">
+            <%= link_to root_path, class: "btn btn-link" do %>
+              <i class="fas fa-arrow-left"></i>
+            <% end %>
+            <%= link_to "Edit this listing", edit_item_path(@item), class: "btn btn-secondary" %>
+            <%= link_to "Delete this listing", item_path(@item),
+              data: { turbo_method: :delete, turbo_confirm: "Are you sure you want to delete this listing?" },
+              class: "btn btn-danger" %>
     </div>
   </div>
-</div>
