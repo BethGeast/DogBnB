@@ -9,9 +9,9 @@
               <%= cl_image_tag photo.key, width: 300, height: 200, crop: :fill, class: "rounded" %>
             </div>
           <% end %>
-          <p class="card-text">Price per day: <%= @item.price %>$ || Location: <%= @item.location %> || Available from: <%= @item.date_available_from %>|| Available until: <%= @item.date_available_until %></p>
+          <p class="card-text">Price per day: <%= @item.price %>$ || Location: <%= @item.location %> || Available from: <%= @item.date_available_from %> || Available until: <%= @item.date_available_until %></p>
           <p class="card-text"><%= @item.description %></p>
-          <%= link_to "Back to all items", items_path, class: "btn btn-primary mr-2" %>
+          <%= link_to "Back to search results", root_path, class: "btn btn-primary mr-2" %>
           <%= link_to "Back to home", root_path, class: "btn btn-primary mr-2" %>
           <%= link_to "Edit this listing", edit_item_path(@item), class: "btn btn-secondary mr-2" %>
           <%= link_to "Delete this listing", item_path(@item),
@@ -22,3 +22,12 @@
     </div>
   </div>
 </div>
+
+
+
+<h3>Create New Booking</h3>
+<%= simple_form_for [@item, @booking] do |f| %>
+  <%= f.input :date_booked_start %>
+  <%= f.input :date_booked_end %>
+  <%= f.submit %>
+<% end %>
