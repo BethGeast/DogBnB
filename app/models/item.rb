@@ -5,8 +5,8 @@ class Item < ApplicationRecord
   has_many :favorites, dependent: :destroy
   has_many_attached :photos
 
-  validates :category, inclusion: { in: ["Big Dog", "Medium Dog", "Small Dog", "Multiple Dogs", "Woodland",
-    "Beachfront", "City", "Home-from-home"] }
+  validates :category, inclusion: { in: %w[Big-Dog Medium-Dog Small-Dog Multiple-Dogs Woodland
+    Beachfront City Home-from-home] }
 
   include PgSearch::Model
 
