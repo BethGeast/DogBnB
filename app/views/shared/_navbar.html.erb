@@ -10,14 +10,17 @@
       <span class="website-name ml-2">Dogbnb</span>
     </div>
 
-    <form class="d-flex mx-auto">
-      <div class="input-group">
-        <input type="Search" placeholder="Search" aria-label="Search">
-        <button class="btn" type="submit">
-          <i class="fa-solid fa-search"></i>
-        </button>
-      </div>
-    </form>
+<%= form_tag(items_path, method: :get, class: "d-flex mx-auto") do %>
+  <div class="input-group">
+    <%= text_field_tag :location, params[:location], class: "form-control", placeholder: "Where", aria_label: "Location" %>
+    |<%= date_field_tag :check_in, params[:check_in], class: "form-control", aria_label: "Check In" %>
+    |<%= date_field_tag :check_out, params[:check_out], class: "form-control", aria_label: "Check Out" %>
+    |<%= number_field_tag :guests, params[:guests], class: "form-control", placeholder: "Guests", aria_label: "Guests" %>
+    <button class="btn" type="submit">
+      <i class="fa-solid fa-search"></i>
+    </button>
+  </div>
+<% end %>
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
