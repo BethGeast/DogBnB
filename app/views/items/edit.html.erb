@@ -1,12 +1,17 @@
 <h1>edit your listing here</h1>
 
-<%= simple_form_for (@item) do |f| %>
+<%= simple_form_for (@item), method: :patch do |f| %>
   <%= f.input :name %>
   <%= f.input :description %>
   <%= f.input :price %>
-  <%= f.input :location %>
+  <%= f.input :location, placeholder: "HI" %>
   <%= f.input :date_available_from %>
   <%= f.input :date_available_until %>
+  <% if @item.photos.attached? %>
+    <% @item.photos.each do |ph| %>
+      <%= f.hidden_field :photos, multiple: true, value: ph.signed_id %>
+    <% end %>
+  <% end %>
   <%= f.input :photos, as: :file, input_html: { multiple: true } %>
   <%= f.submit %>
 <% end %>
