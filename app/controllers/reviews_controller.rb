@@ -1,25 +1,26 @@
 class ReviewsController < ApplicationController
 
   def new
-    @review = Review.find(params[:item_id])
-    @item = Item.new
+    @item = Item.find(params[:item_id])
+    @review = Review.new
   end
 
 def create
-  @review = Review.find(params[:item_id])
-  @item = Item.new (review_strong_params)
-  @item.review = @review
+  @item = Item.find(params[:item_id])
+  @review = Review.new(review_strong_params)
+  @review.item = @item
+  @review.user = current_user
+
   if @review.save
-    redirect_to review_path(@item), notice: "Thank you. your review was submitted successfully"
+    redirect_to item_path(@item), notice: "Thank you. Your review was submitted successfully"
   else
-    render :new, status:  :unprocessable_entity
+    render :new, status: :unprocessable_entity
   end
+end
 
   private
 
-    def item_params
-      @item = Item.find(params[:item])
-      params.require = Item.find(params[:item_id])
-      end
-    end
+  def review_strong_params
+    params.require(:review).permit(:review_text, :review_title)
+  end
 end

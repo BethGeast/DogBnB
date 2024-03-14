@@ -6,7 +6,7 @@
   <%= cl_image_tag photo.key, height: 200, width: 200, crop: :fill %>
 <% end %>
 
-<h3>Price per day: £<%= @item.price %> || Location: <%= @item.location %> || Available from: <%= @item.date_available %></h3>
+<h3>Price per day: £<%= @item.price %> || Location: <%= @item.location %> || Available from: <%= %></h3>
 <p><%= @item.description %></p>
 
 <%= link_to "Back to all items", items_path %>

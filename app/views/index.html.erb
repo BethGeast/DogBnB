@@ -6,3 +6,14 @@
   <p><%= review.body %><p>
   </div>
   <% end %>
+
+
+<%= form_tag(items_path, method: "get) do </%>
+<label  for= "min_price"> Minimum Price:</label>
+<%= number_field_tag  :min_price, params[:max_price] %>
+
+<label  for= "max_price"> Maximum Price:</label>
+<%= number_field_tag :max_price, params[:max_price]%
+
+<%= submt_tag "Filter" %>
+<% end%>
