@@ -2,7 +2,7 @@ class BookingsController < ApplicationController
   before_action :set_item_bookings, only: %i[create]
 
   def new
-    @booking = Booking.new
+    @item = Item.find(params[:item_id])
   end
 
   def create
