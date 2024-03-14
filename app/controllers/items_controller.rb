@@ -4,6 +4,23 @@ class ItemsController < ApplicationController
 
   def index
     @items = Item.all
+
+    # Filter items based on search parameters
+    if params[:location].present?
+      @items = @items.where("location ILIKE ?", "%#{params[:location]}%")
+    end
+
+    if params[:check_in].present?
+      @items = @items.where("date_available_from <= ?", params[:check_in])
+    end
+
+    if params[:check_out].present?
+      @items = @items.where("date_available_until >= ?", params[:check_out])
+    end
+
+    if params[:guests].present?
+      @items = @items.where("max_guests >= ?", params[:guests])
+    end
   end
 
   def show
@@ -38,7 +55,7 @@ class ItemsController < ApplicationController
   private
 
   def item_strong_params
-    params.require(:item).permit(:name, :description, :price, :location, :date_available, photos: [])
+    params.require(:item).permit(:name, :description, :price, :location, :date_available_from, :date_available_until, photos: [])
   end
 
   def set_item
