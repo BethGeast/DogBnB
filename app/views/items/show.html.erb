@@ -1,16 +1,24 @@
-<h1>this should show one single lonely item</h1>
-
-<h2><%= @item.name %></h2>
-
-<% @item.photos.each do |photo| %>
-  <%= cl_image_tag photo.key, height: 200, width: 200, crop: :fill %>
-<% end %>
-
-<h3>Price per day: £<%= @item.price %> || Location: <%= @item.location %> || Available from: <%= %></h3>
-<p><%= @item.description %></p>
-
-<%= link_to "Back to all items", items_path %>
-<%= link_to "Back to home", root_path %>
-<%= link_to "Edit this listing", edit_item_path %>
-<%= link_to "Delete this listing", item_path(@item),
-  data: { turbo_method: :delete, turbo_confirm: "Are you sure you want to delete this listing?" } %>
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-md-8">
+      <div class="card">
+        <div class="card-body">
+          <h2 class="card-title"><%= @item.name %></h2>
+          <% @item.photos.each do |photo| %>
+            <div class="d-flex justify-content-center mb-3">
+              <%= cl_image_tag photo.key, width: 300, height: 200, crop: :fill, class: "rounded" %>
+            </div>
+          <% end %>
+          <p class="card-text">Price per day: <%= @item.price %>$ || Location: <%= @item.location %> || Available from: <%= @item.date_available_from %>|| Available until: <%= @item.date_available_until %></p>
+          <p class="card-text"><%= @item.description %></p>
+          <%= link_to "Back to all items", items_path, class: "btn btn-primary mr-2" %>
+          <%= link_to "Back to home", root_path, class: "btn btn-primary mr-2" %>
+          <%= link_to "Edit this listing", edit_item_path(@item), class: "btn btn-secondary mr-2" %>
+          <%= link_to "Delete this listing", item_path(@item),
+            data: { turbo_method: :delete, turbo_confirm: "Are you sure you want to delete this listing?" },
+            class: "btn btn-danger" %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
