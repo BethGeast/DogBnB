@@ -5,7 +5,8 @@
   <%= f.input :description %>
   <%= f.input :price %>
   <%= f.input :location %>
-  <%= f.input :date_available %>
+  <%= f.input :date_available_from %>
+  <%= f.input :date_available_until %>
   <%= f.input :photos, as: :file, input_html: { multiple: true } %>
   <%= f.submit %>
 <% end %>
