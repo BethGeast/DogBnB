@@ -10,4 +10,9 @@
 // Your CSS partials
 @import "components/index";
 @import "components/signup";
+@import "components/item_show";
 @import "pages/home";
+
+body {
+  background-color: white;
+}

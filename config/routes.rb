@@ -3,9 +3,11 @@ Rails.application.routes.draw do
   root to: "pages#home"
   # get '/items', to: 'items#index'
   resources :items do
-    resources :reviews, only: [:new, :create]
-    collection do
-      get "filter_by_price"
-    end
+    resources :bookings, only: %i[new create]
+    resources :favorites, only: %i[new create]
+    resources :reviews, only: %i[new create]
   end
+  resources :bookings, only: %i[show index edit update]
+  delete '/bookings/:id', to: 'bookings#destroy', as: :delete_booking
+  resources :favorites, only: %i[destroy index]
 end

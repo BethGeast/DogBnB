@@ -1,0 +1,8 @@
+<h3>Add to favorites?</h3>
+<%# <form action="/items/:item_id/favorites" method="post">
+  <input type="submit">
+</form> %>
+<%= simple_form_for [@item, @favorite], url: item_favorites_path(@item), method: :post do |f| %>
+  <%= f.submit %>
+<% end %>
+<%= link_to "Back", root_path %>
