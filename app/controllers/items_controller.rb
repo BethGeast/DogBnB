@@ -4,6 +4,7 @@ class ItemsController < ApplicationController
 
   def index
     @items = Item.all
+    @items = Items.where(price: params[:min_price]..params[:max_price]) if params[:min_price].present?
 
     # Filter items based on search parameters
     if params[:location].present?
@@ -54,9 +55,8 @@ class ItemsController < ApplicationController
 
       def filter_by_price
           min_price = params[:min_price]
-          max_price = params [:max_price]
-          raise
-          @items = Item.where(price: min_price.max.price)
+          max_price = params[:max_price]
+          @items = Item.where(price: min_price..max_price)
           render json: @items
         end
 
