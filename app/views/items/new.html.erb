@@ -15,6 +15,13 @@
       <%= f.input :location, label: "Location", input_html: { class: "form-control" } %>
     </div>
     <div class="col-md-6">
+      <%= f.input :max_guests, label: "Max. Guests", input_html: { class: "form-control" } %>
+    </div>
+    <div class="col-md-6">
+      <%= f.input :category, collection: ["Big Dog", "Medium Dog", "Small Dog", "Multiple Dogs", "Woodland",
+        "Beachfront", "City", "Home-from-home"], prompt: "Select a category" %>
+    </div>
+    <div class="col-md-6">
       <%= f.input :date_available_from, label: "Available Date", input_html: { class: "form-control" } %>
     </div>
     <div class="col-md-6">
