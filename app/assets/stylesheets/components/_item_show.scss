@@ -85,3 +85,10 @@
 #modalOverlay .carousel-control-next {
   z-index: 9999;
 }
+
+
+.description-text {
+  max-width: 800px;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+}
