@@ -1,4 +1,5 @@
 require 'faker'
+Item.destroy_all
 25.times do
   Item.create(
     name: Faker::Creature::Dog.meme_phrase,
