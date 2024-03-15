@@ -21,6 +21,6 @@ end
   private
 
   def review_strong_params
-    params.require(:review).permit(:review_text, :review_title, :photo)
+    params.require(:review).permit(:review_text, :review_title)
   end
 end
