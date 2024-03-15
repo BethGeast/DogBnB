@@ -1,7 +1,56 @@
+<script>document.addEventListener("DOMContentLoaded", function() {
+  const filterIcons = document.querySelectorAll('.filter-icon');
+  filterIcons.forEach(function(icon) {
+    icon.addEventListener('click', function() {
+      icon.classList.toggle('active');
+      // Add filtering logic here
+    });
+  });
+});
+document.addEventListener("DOMContentLoaded", function() {
+  const priceFilterIcon = document.querySelector('.price-filter-icon');
+  const priceSliderWrapper = document.querySelector('.price-slider-wrapper');
+
+  priceFilterIcon.addEventListener('click', function() {
+    if (priceSliderWrapper.style.display === 'flex') {
+      priceSliderWrapper.style.display = 'none';
+    } else {
+      priceSliderWrapper.style.display = 'flex';
+    }
+  });
+});
+
+</script>
+
+
+
 <div class="container mt-5">
   <div class="row mb-3">
     <div class="col-md-12">
-      <p>todo put filters here</p>
+      <p>Filters:</p>
+      <div class="filter-group">
+        <div class="filter-icons-left">
+          <div class="filter-icon small-dog-filter active" data-value="small">
+            <i class="fas fa-dog"></i>
+          </div>
+          <div class="filter-icon medium-dog-filter active" data-value="medium">
+            <i class="fas fa-dog"></i>
+          </div>
+          <div class="filter-icon big-dog-filter active" data-value="big">
+            <i class="fas fa-dog"></i>
+          </div>
+        </div>
+        <div class="price-filter-wrapper">
+          <div class="price-filter-icon">
+            <i class="fas fa-dollar-sign"></i>
+          </div>
+          <div class="price-slider-wrapper">
+            <label for="priceRangeFilter">Min:</label>
+            <input type="range" class="form-control-range" id="priceRangeFilter" min="0" max="100" value="0">
+            <label for="priceRangeFilter">Max:</label>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 
