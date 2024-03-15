@@ -22,3 +22,14 @@
     </div>
   </div>
 </div>
+
+<p><strong>Reviews</strong></p>
+<ul class="list-group">
+  <% @item.reviews.each do |review| %>
+    <li class="list-group-item"><%= review.review_title %></li>
+    <%if review.photo.attached?%>
+    <%= cl_image_tag review.photo.key, height: 300, width: 400, crop: :fill %>
+    <% end %>
+  <% end %>
+</ul>
+<br>

@@ -7,13 +7,12 @@
   </div>
   <% end %>
 
+<%= form_tag(filter_by_price_items_path, method: :get, remote: true) do %>
+<%= label_tag :min_price, "Minimum Price" %>
+<%= number_field_tag :min_price %>
 
-<%= form_tag(items_path, method: "get) do </%>
-<label  for= "min_price"> Minimum Price:</label>
-<%= number_field_tag  :min_price, params[:max_price] %>
-
-<label  for= "max_price"> Maximum Price:</label>
-<%= number_field_tag :max_price, params[:max_price]%
-
-<%= submt_tag "Filter" %>
-<% end%>
+<%= label_tag :max_price, "Maxium Price"%>
+<%=  number_field_tag :max_price %>
+<%= submit_tag 'price' %>
+<% end %>
+<%= form_tag(filter_by_price_items_path, method: :get, remote: true) do %>

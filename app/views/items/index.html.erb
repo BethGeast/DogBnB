@@ -10,5 +10,15 @@
   <% end %>
 <% end %>
 
+<%= form_tag(filter_by_price_items_path, method: :get, remote: true) do %>
+<%= label_tag :min_price, "Minimum Price" %>
+<%= number_field_tag :min_price %>
+
+<%= label_tag :max_price, "Maxium Price"%>
+<%=  number_field_tag :max_price %>
+<%= submit_tag 'price' %>
+<% end %>
+
+
 <%= link_to "Back to home page", root_path %>
 <%= link_to "List a new item for rent", new_item_path %>

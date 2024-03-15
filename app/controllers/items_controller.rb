@@ -52,10 +52,18 @@ class ItemsController < ApplicationController
     redirect_to items_path, status: :see_other
   end
 
+      def filter_by_price
+          min_price = params[:min_price]
+          max_price = params [:max_price]
+          raise
+          @items = Item.where(price: min_price.max.price)
+          render json: @items
+        end
+
   private
 
   def item_strong_params
-    params.require(:item).permit(:name, :description, :price, :location, :date_available_from, :date_available_until, photos: [])
+    params.require(:item).permit(:name, :description, :price, :location, :date_available_from, :date_available_until, photos:[])
   end
 
   def set_item
