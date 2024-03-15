@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   resources :items do
     resources :bookings, only: %i[new create]
     resources :favorites, only: %i[new create]
+    resources :reviews, only: %i[new create]
   end
   resources :bookings, only: %i[show index edit update]
   delete '/bookings/:id', to: 'bookings#destroy', as: :delete_booking

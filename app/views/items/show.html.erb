@@ -116,6 +116,14 @@
   </div>
 </div>
 
+<h3><strong>Reviews</strong></h3>
+<ul>
+  <% @item.reviews.each do |review| %>
+    <li><strong><%= review.review_title %></strong></li>
+    <li><%= review.review_text %></li>
+  <% end %>
+</ul>
+
 <script>
   var modal = document.getElementById('modalOverlay');
 
