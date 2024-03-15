@@ -2,3 +2,4 @@
 <p>Starting: <%= @booking.date_booked_start %></p>
 <p>Until: <%= @booking.date_booked_end %></p>
 <p>Price per night: $<%= "#{@item.price}" %></p>
+<%= link_to "Back", item_path(@item) %>

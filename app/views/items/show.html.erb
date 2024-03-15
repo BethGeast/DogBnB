@@ -54,7 +54,7 @@
       <%= link_to edit_item_path(@item) do %>
         <i class="fas fa-edit"></i>
       <% end %>
-      <%= link_to item_path(@item), method: :delete, data: { confirm: "Are you sure?" }, style: "margin-left: 10px;" do %>
+      <%= link_to delete_item_path(@item), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" }, style: "margin-left: 10px;" do %>
         <i class="fas fa-trash-alt"></i>
       <% end %>
     </div>
@@ -117,11 +117,18 @@
 </div>
 
 <h3><strong>Reviews</strong></h3>
-<ul>
-  <% @item.reviews.each do |review| %>
-    <li><strong><%= review.review_title %></strong></li>
-    <li><%= review.review_text %></li>
+<h4>New review</h4>
+  <%= simple_form_for [@item, @review] do |f| %>
+    <%= f.input :review_title %>
+    <%= f.input :review_text %>
+    <%= f.submit "Submit review", class: "btn btn-primary" %>
   <% end %>
+
+  <ul>
+    <% @item.reviews.each do |review| %>
+      <li><strong><%= review.review_title %></strong></li>
+      <li><%= review.review_text %></li>
+    <% end %>
 </ul>
 
 <script>
