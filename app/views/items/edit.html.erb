@@ -47,6 +47,12 @@
       <%= f.label :photos, class: "col-sm-2 control-label" %>
       <div class="col-sm-10">
         <%= f.input_field :photos, as: :file, class: "form-control", multiple: true %>
+        <% if @item.photos.attached? %>
+          <% @item.photos.each do |ph| %>
+            <%= f.hidden_field :photos, multiple: true, value: ph.signed_id %>
+          <% end %>
+        <% end %>
+        <%= f.input :photos, as: :file, input_html: { multiple: true } %>
       </div>
     </div>
 
