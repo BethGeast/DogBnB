@@ -1,0 +1,6 @@
+<h1>Here's your favorites list!</h1>
+<% @favorites.each do |favorite| %>
+  <li><%= link_to favorite.item.name, item_path(favorite.item_id) %></li>
+  <%= link_to "Remove", favorite_path(favorite),
+    data: { turbo_method: :delete, turbo_confirm: "Are you sure you want to remove this item from your favorites list?" } %>
+<% end %>
