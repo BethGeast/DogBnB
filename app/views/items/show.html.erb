@@ -116,39 +116,78 @@
   </div>
 </div>
 
-<h3><strong>Reviews</strong></h3>
-<h4>New review</h4>
-  <%= simple_form_for [@item, @review] do |f| %>
-    <%= f.input :review_title %>
-    <%= f.input :review_text %>
-    <%= f.submit "Submit review", class: "btn btn-primary" %>
-  <% end %>
+<div class="container">
+  <!-- Other content -->
 
-  <ul>
+  <h3><strong>Reviews</strong></h3>
+  <div class="row">
     <% @item.reviews.each do |review| %>
-      <li><strong><%= review.review_title %></strong></li>
-      <li><%= review.review_text %></li>
+      <div class="col-md-6 mb-3">
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title"><%= review.review_title %></h5>
+            <p class="card-text" style="font-size: 0.9rem;"><%= review.review_text %></p>
+          </div>
+        </div>
+      </div>
     <% end %>
-</ul>
+  </div>
+  <div data-controller="toggle-button">
+    <div class="row justify-content-center">
+      <div class="col-md-6">
+        <button class="btn btn-primary rounded-circle mx-auto my-3 display-block" data-action="click->toggle-button#toggleReview" style="width: 40px; height: 40px;">
+          <i class="fas fa-plus"></i>
+        </button>
+      </div>
+    </div>
+
+    <div class="row justify-content-center">
+      <div class="col-md-6">
+        <div class="card mb-3" data-toggle-button-target="newReviewCard" style="display: none;">
+          <div class="card-body">
+            <h4 class="card-title">New Review</h4>
+            <%= simple_form_for [@item, @review], html: { id: "newReviewForm" } do |f| %>
+              <div class="form-group">
+                <%= f.text_field :review_title, class: "form-control", placeholder: "Your name" %>
+              </div>
+              <div class="form-group">
+                <%= f.text_area :review_text, class: "form-control", placeholder: "Write your review here", rows: 4 %>
+              </div>
+              <div class="form-group text-center">
+                <%= f.submit "Submit review", class: "btn btn-primary" %>
+              </div>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 
 <script>
-  var modal = document.getElementById('modalOverlay');
+  document.addEventListener("DOMContentLoaded", function(){
 
-  var carousel = document.getElementById('carousel<%= @item.id %>');
+    // Modal functionality
+    var modal = document.getElementById('modalOverlay');
+    var carousel = document.getElementById('carousel<%= @item.id %>');
+    var span = document.getElementsByClassName("close")[0];
 
-  var span = document.getElementsByClassName("close")[0];
-
-  carousel.onclick = function() {
-    modal.style.display = "block";
-  }
-
-  span.onclick = function() {
-    modal.style.display = "none";
-  }
-
-  window.onclick = function(event) {
-    if (event.target == modal) {
-      modal.style.display = "none";
+    if (carousel) {
+      carousel.onclick = function() {
+        modal.style.display = "block";
+      }
     }
-  }
+
+    if (span) {
+      span.onclick = function() {
+        modal.style.display = "none";
+      }
+    }
+
+    window.onclick = function(event) {
+      if (event.target == modal) {
+        modal.style.display = "none";
+      }
+    }
+  });
 </script>
